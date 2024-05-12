@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ produkt_user.id }}</title>
+</head>
+<body>
+    {% if produkt_user %}
+        <h1> {{ produkt_user.model}}</h1>
+        <p> Marka: {{ produkt_user.marka }}</p>
+        <p> {{ produkt_user.opis}} </p>
+        <p> {{ produkt_user.cena}} </p>
+    {% else %}
+        <p> Brak produktu. </p>
+    {% endif %}
+
+</body>
+</html>
