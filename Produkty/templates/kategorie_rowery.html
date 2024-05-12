@@ -1,0 +1,19 @@
+{% extends 'szablon.html' %}
+{% block produkt %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Kategorie rowerów</title>
+</head>
+<body>
+    {% if kategorie_rowery %}
+        {% for produkt in kategorie_rowery %}
+            <p><a href = "/produkt/{{ produkt.id }}"> {{produkt.model }} </a></p>
+        {% endfor %}
+    {% else %}
+    {% endif %}
+
+</body>
+</html>
+{% endblock %}

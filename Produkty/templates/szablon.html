@@ -5,10 +5,20 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Sklep rowerowy</h1>
-    <h2>Kategorie rowerów:</h2>
-    {% for kat in kategorie %}
-    <p><a href = 'kategoria/{{ kat.id }}'> {{ kat.nazwa }}</a></p>
-    {% endfor %}
+    <div>
+        <h1>Sklep rowerowy</h1>
+    </div>
+    <div style="clear:both"></div>
+    <div style="width: 200px; float: left">
+        <h2>Kategorie rowerów:</h2>
+        {% for kat in kategorie %}
+        <p><a href = 'kategoria/{{ kat.id }}'> {{ kat.nazwa }}</a></p>
+        {% endfor %}
+    </div>
+
+    <div style="width: 600px; float: left">
+        {% block produkt %} {% endblock produkt %}
+    </div>
+    <div style="clear:both"></div>
 </body>
 </html>

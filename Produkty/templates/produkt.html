@@ -1,3 +1,5 @@
+{% extends 'szablon.html' %}
+{% block produkt%}
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -6,13 +8,19 @@
 </head>
 <body>
     {% if produkt_user %}
-        <h1> {{ produkt_user.model}}</h1>
-        <p> Marka: {{ produkt_user.marka }}</p>
+        <h1> {{ produkt_user.marka }} {{ produkt_user.model}}</h1>
         <p> {{ produkt_user.opis}} </p>
-        <p> {{ produkt_user.cena}} </p>
+        <p> Cena: {{ produkt_user.cena}} </p>
+        <p> {% if produkt_user.rezerwacja %}
+                Rezerwacja
+            {% else%}
+                Produkt dostępny
+            {% endif %}
+        </p>
     {% else %}
         <p> Brak produktu. </p>
     {% endif %}
 
 </body>
 </html>
+{% endblock %}
