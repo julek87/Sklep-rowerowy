@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj do koszyka</title>
+</head>
+<body>
+    <div>
+        <h1>Dodaj do koszyka</h1>
+    </div>
+    <div style="clear:both"></div>
+    <div style="width: 200px; float: left">
+        <h2>Kategorie rowerów:</h2>
+    </div>
+
+    <div style="width: 600px; float: left">
+        <form action="{% url 'dodaj_do_koszyka' produkt.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Dodaj do koszyka">
+        </form>
+        <p><a href="{% url 'index' %}">Powrót do strony głównej</a></p>
+    </div>
+    <div style="clear:both"></div>
+</body>
+</html>

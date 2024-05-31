@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sklep rowerowy{% endblock %}</title>
+    <!-- Dodaj tutaj linki do CSS, JavaScript, bibliotek itp. -->
+    <link rel="stylesheet" href="ścieżka/do/stylu.css">
+</head>
+<body>
+    <header>
+        <!-- Tutaj zawartość nagłówka, np. logo, menu nawigacyjne -->
+        <h1>Sklep rowerowy</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Strona główna</a></li>
+                <li><a href="/dodaj/">Dodaj produkt</a></li>
+                <!-- Dodaj tutaj inne elementy menu -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Tutaj będzie wstawiana zawartość konkretnych stron przez szablony potomne -->
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <!-- Tutaj zawartość stopki, np. informacje kontaktowe, linki do mediów społecznościowych -->
+        <p>&copy; 2024 Sklep rowerowy</p>
+    </footer>
+    <!-- Dodaj tutaj linki do JavaScript, bibliotek itp. -->
+    <script src="ścieżka/do/skryptu.js"></script>
+</body>
+</html>

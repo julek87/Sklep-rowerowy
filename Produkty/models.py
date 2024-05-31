@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Marka(models.Model):
@@ -37,3 +38,10 @@ class Produkty(models.Model):
     class Meta:
         verbose_name = "Produkt"
         verbose_name_plural = "Produkty"
+
+
+class Koszyk(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+class PozycjaKoszyka(models.Model):
+    koszyk = models.ForeignKey(Koszyk, on_delete=models.CASCADE)

@@ -19,6 +19,13 @@
 
     <div style="width: 600px; float: left">
         {% block produkt %} {% endblock produkt %}
+        <!-- Dodajemy warunek sprawdzający, czy produkt istnieje, zanim wyświetlimy formularz -->
+        {% if produkt %}
+        <form action="{% url 'dodaj_do_koszyka' produkt.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Dodaj do koszyka">
+        </form>
+        {% endif %}
         <p><a href="{% url 'koszyk' %}">Zawartość koszyka</a></p>
     </div>
     <div style="clear:both"></div>
