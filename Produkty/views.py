@@ -1,24 +1,34 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-from .models import Produkty, Kategoria
-
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .models import Produkty, Koszyk, PozycjaKoszyka, Zamowienie, PozycjaZamowienia, Kategoria
 
 def index(request):
     kategorie = Kategoria.objects.all()
-    dane = {'kategorie': kategorie}
-    return render(request, 'szablon.html', dane)
+    produkty = Produkty.objects.all()
+    return render(request, 'index.html', {'kategorie': kategorie, 'produkty': produkty})
 
 def kategoria(request, id):
-    kategoria_user = Kategoria.objects.get(pk=id)
-    kategorie_rowery = Produkty.objects.filter(kategoria=kategoria_user)
     kategorie = Kategoria.objects.all()
-    dane = {'kategoria_user': kategoria_user,
-                 'kategorie_rowery': kategorie_rowery,
-                 'kategorie': kategorie}
-    return render(request, 'kategorie_rowery.html', dane)
-
+    produkty = Produkty.objects.filter(kategoria_id=id)
+    return render(request, 'index.html', {'kategorie': kategorie, 'produkty': produkty})
 
 def produkt(request, id):
-    produkt_user = Produkty.objects.get(pk=id)
-    tekst = {'produkt_user': produkt_user}
-    return render(request, 'produkt.html', tekst)
+    produkt = Produkty.objects.get(id=id)
+    return render(request, 'szczegoly_produktu.html', {'produkt': produkt})
+
+def lista_produktow(request):
+    produkty = Produkty.objects.all()
+    return render(request, 'lista_produktow.html', {'produkty': produkty})
+
+@login_required
+def zamowienie(request):
+    koszyk = Koszyk.objects.get(user=request.user)
+    zamowienie = Zamowienie.objects.create(user=request.user)
+    for pozycja in koszyk.pozycjakoszyka_set.all():
+        PozycjaZamowienia.objects.create(
+            zamowienie=zamowienie,
+            produkt=pozycja.produkt,
+            ilosc=pozycja.ilosc
+        )
+    koszyk.pozycjakoszyka_set.all().delete()
+    return redirect('lista_produktow')

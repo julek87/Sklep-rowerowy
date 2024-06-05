@@ -1,0 +1,11 @@
+{% extends "szablon.html" %}
+
+{% block produkt %}
+    <h2>{{ produkt.marka }} {{ produkt.model }}</h2>
+    <p>{{ produkt.opis }}</p>
+    <p>Cena: {{ produkt.cena }}</p>
+    <form action="{% url 'dodaj_do_koszyka' produkt.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Dodaj do koszyka</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "szablon.html" %}
+
+{% block produkt %}
+    <h2>Produkty</h2>
+    {% for produkt in produkty %}
+        <div>
+            <h3>{{ produkt.marka }} {{ produkt.model }}</h3>
+            <p>{{ produkt.opis }}</p>
+            <p>Cena: {{ produkt.cena }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
